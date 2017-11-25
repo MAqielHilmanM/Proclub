@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "297519912202",
+    "firebase_url": "https://unimaps-proclub.firebaseio.com",
+    "project_id": "unimaps-proclub",
+    "storage_bucket": "unimaps-proclub.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:297519912202:android:da041a5a57f0585e",
+        "android_client_info": {
+          "package_name": "proclub.froyo.unimaps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "297519912202-f3m2hv0eja8nlt62iql2m7596p164043.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "proclub.froyo.unimaps",
+            "certificate_hash": "e6fda680c52fdb89b48694309159ba73c1731e3e"
+          }
+        },
+        {
+          "client_id": "297519912202-eehrliioqioa9khggbms1et9q58k3cpr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCZdZdFuuEzv_wTl8XgB2IgwLuSfDG4Go"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "297519912202-eehrliioqioa9khggbms1et9q58k3cpr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
