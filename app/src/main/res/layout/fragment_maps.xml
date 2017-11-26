@@ -1,0 +1,22 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="proclub.froyo.unimaps.maps.MapsFragment"
+    >
+    <data>
+        <variable
+            name="vm"
+            type="proclub.froyo.unimaps.maps.MapsFragment"/>
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </com.google.android.gms.maps.MapView>
+    </FrameLayout>
+</layout>
