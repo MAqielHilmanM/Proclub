@@ -24,7 +24,4 @@ public class BaseFirebase {
     public DatabaseReference bLocationUniversityRef(String id){
         return bLocationUniversityRef.child(id);
     }
-
-
-
 }

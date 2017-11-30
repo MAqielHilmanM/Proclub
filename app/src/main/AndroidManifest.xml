@@ -8,6 +8,7 @@
         android:protectionLevel="signature" />
 
     <uses-permission android:name="proclub.froyo.unimaps.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <!-- Permission -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -41,6 +42,8 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+
+        <activity android:name=".tools.QRCodeScannerActivity"></activity>
     </application>
 
 </manifest>
