@@ -43,7 +43,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".tools.QRCodeScannerActivity"></activity>
+        <activity android:name=".tools.QRCodeScannerActivity" />
+        <activity android:name=".main.BuildingActivity"></activity>
     </application>
 
 </manifest>

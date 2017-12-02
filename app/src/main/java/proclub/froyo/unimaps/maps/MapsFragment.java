@@ -91,7 +91,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
 
     }
 
-    private void moveCamera(LatLng latLng,
+    public void moveCamera(LatLng latLng,
                             int zoom) {
         //move map camera
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));

@@ -70,12 +70,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1 && resultCode == RESULT_OK) {
-            String[] split = data.getStringExtra("result").split("_");
             BaseFirebase a = new BaseFirebase();
-            a.bLocationBuildingRef(split[0], split[1]).addValueEventListener(new ValueEventListener() {
+
+            final String[] split = data.getStringExtra("result").split("_");
+            a.bInformationBuildingRef(split[0], split[1]).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    Toast.makeText(getApplicationContext(), dataSnapshot.child("Floor").getValue(Integer.class).toString(), Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(MainActivity.this, BuildingActivity.class);
+                    i.putExtra("univ",split[0]);
+                    i.putExtra("building",split[1]);
+                    startActivity(i);
                 }
 
                 @Override

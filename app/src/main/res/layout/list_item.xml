@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cvFloor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/lblFloor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lantai 1"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"/>
+
+            <TextView
+                android:id="@+id/lblRoom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Room"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:id="@+id/lblToliet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Toilet"
+                android:layout_marginTop="5dp"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
