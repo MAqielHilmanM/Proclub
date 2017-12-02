@@ -49,39 +49,42 @@ public class BuildingActivity extends AppCompatActivity {
         listFloor = new ArrayList<>();
 
         data = getIntent();
+        String type = data.getStringExtra("type");
         String univ = data.getStringExtra("univ");
         String building = data.getStringExtra("building");
 
         BaseFirebase bf = new BaseFirebase();
-        bf.bInformationFloorRef(univ, building).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                listFloor.clear();
-                if (dataSnapshot.exists()) {
-                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                        String floorName = ds.child("Name").getValue(String.class);
-                        int rooms = ds.child("Rooms").getValue(Integer.class);
-                        int toilet = ds.child("Toilet").getValue(Integer.class);
-                        FloorModel fm = new FloorModel(floorName, rooms, toilet);
-                        listFloor.add(fm);
+        if (type.equals("BLDN")) {
+            bf.bInformationFloorRef(univ, building).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    listFloor.clear();
+                    if (dataSnapshot.exists()) {
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            String floorName = ds.child("Name").getValue(String.class);
+                            int rooms = ds.child("Rooms").getValue(Integer.class);
+                            int toilet = ds.child("Toilet").getValue(Integer.class);
+                            FloorModel fm = new FloorModel(floorName, rooms, toilet);
+                            listFloor.add(fm);
+                        }
+
+                        mAdapter = new FloorAdapter(BuildingActivity.this, listFloor);
+                        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(BuildingActivity.this);
+                        rvFloor.setLayoutManager(layoutManager);
+                        rvFloor.setAdapter(mAdapter);
+
+                        mAdapter.notifyDataSetChanged();
+                    } else {
+                        rvFloor.setVisibility(View.GONE);
+                        lblNotAvailable.setVisibility(View.VISIBLE);
                     }
-
-                    mAdapter = new FloorAdapter(listFloor);
-                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(BuildingActivity.this);
-                    rvFloor.setLayoutManager(layoutManager);
-                    rvFloor.setAdapter(mAdapter);
-
-                    mAdapter.notifyDataSetChanged();
-                } else {
-                    rvFloor.setVisibility(View.GONE);
-                    lblNotAvailable.setVisibility(View.VISIBLE);
                 }
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
+                }
+            });
+        }
     }
 }

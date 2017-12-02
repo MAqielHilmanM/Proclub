@@ -20,8 +20,8 @@ public class BaseFirebase {
     public DatabaseReference bLocationBuildingRef = bLocationRef.child("building");
     public DatabaseReference bLocationUniversityRef = bLocationRef.child("university");
 
-    public DatabaseReference bLocationBuildingRef(String id){
-        return bLocationBuildingRef.child(id);
+    public DatabaseReference bLocationBuildingRef(String univ, String fak){
+        return bLocationBuildingRef.child(univ).child(fak);
     }
     public DatabaseReference bInformationBuildingRef(String parent,String child){
         return bInformationBuildingRef.child(parent).child(child);

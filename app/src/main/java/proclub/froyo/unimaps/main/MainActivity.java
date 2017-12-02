@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton fabScanQRCode;
 
+    private MapsFragment fragmentMaps;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         fabScanQRCode = mBinding.fab;
 
         MainAdapter adapter = new MainAdapter(getSupportFragmentManager());
-        Fragment fragmentMaps = new MapsFragment();
+        fragmentMaps = new MapsFragment();
         adapter.addFragment(fragmentMaps, "Maps");
         mBinding.vp.setAdapter(adapter);
         mBinding.tabs.setupWithViewPager(mBinding.vp);
@@ -70,9 +71,50 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1 && resultCode == RESULT_OK) {
+            fragmentMaps.removeMark();
             BaseFirebase a = new BaseFirebase();
-
             final String[] split = data.getStringExtra("result").split("_");
+            if (split[0].equals("LCTN")) {
+                if (split[1].equals("UNIV")) {
+                    a.bLocationUniversityRef(split[2]).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            float zoom = dataSnapshot.child("altitude").getValue(Float.class);
+                            float latitude = dataSnapshot.child("latitude").getValue(Float.class);
+                            float longitude = dataSnapshot.child("longitude").getValue(Float.class);
+                            String name = dataSnapshot.child("name").getValue(String.class);
+
+                            fragmentMaps.moveCamera(new LatLng(latitude,longitude), zoom);
+                            fragmentMaps.addMark(new LatLng(latitude, longitude), name, split[1], split[2], "");
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                } else if (split[1].equals("BLDN")) {
+                    a.bLocationBuildingRef(split[2], split[3]).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            float zoom = dataSnapshot.child("altitude").getValue(Float.class);
+                            float latitude = dataSnapshot.child("latitude").getValue(Float.class);
+                            float longitude = dataSnapshot.child("longitude").getValue(Float.class);
+                            String name = dataSnapshot.child("name").getValue(String.class);
+
+                            fragmentMaps.moveCamera(new LatLng(latitude,longitude), zoom);
+                            fragmentMaps.addMark(new LatLng(latitude, longitude), name, split[1], split[2], split[3]);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+                return;
+            }
+
             a.bInformationBuildingRef(split[0], split[1]).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -80,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
                     i.putExtra("univ",split[0]);
                     i.putExtra("building",split[1]);
                     startActivity(i);
+
                 }
 
                 @Override

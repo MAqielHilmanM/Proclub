@@ -44,7 +44,8 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name=".tools.QRCodeScannerActivity" />
-        <activity android:name=".main.BuildingActivity"></activity>
+        <activity android:name=".main.BuildingActivity" />
+        <activity android:name=".main.BuildingMapActivity"></activity>
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package proclub.froyo.unimaps.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,15 +13,18 @@ import java.util.List;
 
 import proclub.froyo.unimaps.Model.FloorModel;
 import proclub.froyo.unimaps.R;
+import proclub.froyo.unimaps.main.BuildingMapActivity;
 
 /**
  * Created by Naufal on 02/12/2017.
  */
 
 public class FloorAdapter extends RecyclerView.Adapter<FloorAdapter.ViewHolder> {
+    private Context mContex;
     private List<FloorModel> listFloor;
 
-    public FloorAdapter(List<FloorModel> listFloor) {
+    public FloorAdapter(Context mContex, List<FloorModel> listFloor) {
+        this.mContex = mContex;
         this.listFloor = listFloor;
     }
 
@@ -32,10 +36,18 @@ public class FloorAdapter extends RecyclerView.Adapter<FloorAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        FloorModel fm = listFloor.get(position);
+        final FloorModel fm = listFloor.get(position);
         holder.lblFloor.setText(fm.getmFloorName());
         holder.lblRoom.setText(String.valueOf(fm.getmRoom()) + " Rooms");
         holder.lblToliet.setText(String.valueOf(fm.getmToilet()) + " Toilet");
+        holder.cvFloor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(mContex, BuildingMapActivity.class);
+                i.putExtra("name", fm.getmFloorName());
+                mContex.startActivity(i);
+            }
+        });
     }
 
     @Override
